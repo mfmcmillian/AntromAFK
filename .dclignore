@@ -1,0 +1,17 @@
+.*
+bin/*.map
+package-lock.json
+tsconfig.json
+node_modules
+*.ts
+*.tsx
+.vscode
+src
+tools
+docs
+*.md
+*.log
+*.blend
+*.zip
+agent
+skills-lock.json
