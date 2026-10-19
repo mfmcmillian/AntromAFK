@@ -1,14 +1,14 @@
-# Antrom AFK World
+# Antrom AFK
 
 | | |
 |---|---|
-| Public experience title | Antrom AFK World (working title; the hall is "the Guildstone Hall") — IP & [Content Policy](https://decentraland.org/content/) self-check: names, characters, code, UI and the Guildstone Ring are original KOA work; 3D kits are licensed Synty Studios packs (Synty EULA permits use in shipped games) |
+| Public experience title | Antrom AFK (the scene is "the Champions' Hall") — IP & [Content Policy](https://decentraland.org/content/) self-check: names, characters, code and UI are original KOA work; 3D kits are licensed Synty Studios packs (Synty EULA permits use in shipped games) |
 | Deployment target | Decentraland World on a KOA NAME, running the SDK7 **authoritative server** (`authoritativeMultiplayer: true`; `scene.json` currently names `KoA.dcl.eth`, final NAME to confirm) |
 | Studio / team name | KOA |
 | Date | 2026-10-18 |
 | Contact (Discord + email) | koa_matt · matthew.mcmillian@ymail.com |
 
-*Separate experience from Dungeons of Antrom (`-17,123`, its own GDD, repo and server). Shares the Antrom name and the studio, nothing else: no code, no backend, no currency, no progression.*
+*A standalone experience. Resources arrive from a separate, already-published smart wearable (the Antrom Guildstone Ring) through one deposit step, the way a bank accepts a cheque; nothing else about that wearable, its backend or its systems is part of this design. Also separate from Dungeons of Antrom (`-17,123`, its own GDD, repo and server).*
 
 ---
 
@@ -16,39 +16,39 @@
 
 | | |
 |---|---|
-| **Player promise** | Your ring gathers while you wander Decentraland. Bring the haul to the Guildstone Hall and turn it into a weapon you wear, a raid you fight in person, and a quest that sends you back out. |
-| **Primary player** | A ring wearer (60 profiles, 8 guilds today) who has a Depot full of wood, rock, meat and bone and nothing to point it at beyond the next suit; and the Decentraland regular who wants an idle game to run in the background of whatever else they do, with a place to go when the numbers are big enough. |
-| **Current status** | **The gathering half is live** as a smart wearable, the Antrom Guildstone Ring (v1.4.0, approved 2026-10-18): four professions, Depot, Workshop, Bank, Berry Shop, 92 profession suits minted, guilds with HQ and tech tree, three heroes with four stats, the Storm auto-battler, lobby chat in four languages, mail. **The World is not built**: the `AntromAFK` repo holds a pre-ring land prototype ("Knights of Antrom: Crafters") that becomes the hall. Ring source: `AntromAFK-Wearable`; backend: `dcl-firebase-backend` (Express on Vercel + Firestore). |
-| **Requested round** | **v0** (vertical slice): the hall, the Forge with one craftable combat wearable, and the quest board, read against the live ring ledger. The V1 4-week scope in §9 adds the first in-person raid. |
-| **Live at end of the round** | *V0:* a ring wearer walks into the hall, sees their real Depot on the Forge, spends it on a combat wearable that mints to their wallet, and takes a quest that pays out when the ring has gathered its target. *V1 (§9):* the same, plus a four-player raid against a boss in the hall's undercroft, fought with the hero stats the ring already tracks, paying in the forge's rare material. |
+| **Player promise** | Bring resources to the hall, forge wearables you keep, raid in them, and climb to Raiding Champion of the week. |
+| **Primary player** | Players who like crafting gear from what they have gathered and then proving it in a fight: the Monster Hunter and co-op raid crowd, arriving at a public World alone and hoping to find a party. In Decentraland specifically: wallets that already hold Antrom resources (60 today) and have nothing to point them at. |
+| **Current status** | **Not built.** The `AntromAFK` repo holds a pre-World crafting prototype ("Knights of Antrom: Crafters", 2025) whose Depot / Craft / Workshop panels are reused for the Forge UI. The resource source (the Guildstone Ring) is live and approved, so day one has players with full depots. |
+| **Requested round** | **v0** (vertical slice): the hall, the deposit, the Forge with the first weapon line, and one raid against the Bone-Warden, playtested with real parties. The V1 4-week scope in §9 adds the second raid, armor sets, tiers and the Champion board. |
+| **Live at end of the round** | *V0:* a player deposits resources, forges a weapon that mints to their wallet, walks through the Gate with up to three others, fights the Bone-Warden with that weapon in hand, and comes back with Wardenstone and champion XP. *V1 (§9):* the same loop with two raids, three weapon lines, armor sets, +1/+2 tiers and the weekly Champion board naming the Raiding Champion in the hall. |
 
 ---
 
 ## 1. Player Promise
 
-> Your ring gathers while you wander Decentraland. Bring the haul to the Guildstone Hall and turn it into a weapon you wear, a raid you fight in person, and a quest that sends you back out.
+> Bring resources to the hall, forge wearables you keep, raid in them, and climb to Raiding Champion of the week.
 
-The twist is the split: the grind happens anywhere in Decentraland, through a wearable, while you do other things; the World is where the grind becomes something you can see, wear and fight with. For the listing: *the idle game that follows you around Decentraland, and the hall where its loot becomes gear, raids and quests.*
+The twist is that the gear is real: every weapon and armor piece forged is a Decentraland wearable minted to the wallet, worn in every scene, and the only way to get one is to raid for the material and forge it. For the listing: *forge your gear, raid in it, be champion for a week.*
 
 ---
 
 ## 2. First Minutes & How to Play
 
-*Two arrivals matter. A ring wearer already has a Depot; a newcomer does not own the ring yet. The hall must give the newcomer a ring in the first minute and the wearer a reason to spend in the first three.*
+*The order below is what V0 builds; timings are targets to check at the week-2 playtest.*
 
 | Time | Player experience |
 |---|---|
-| **0–5 seconds after control** | The Guildstone Hall: a round stone chamber under a lit guildstone, Alara at its foot, the Forge glowing to one side, the quest board to the other, the undercroft stair behind. Other players visible. One line over Alara: "Bring me what the ring gathered." |
-| **5–30 seconds** | *No ring yet:* Alara's pedestal says FREE RING and mints the Guildstone Ring to the wallet (the Rewards dispenser the site already uses, one per wallet) with a one-line "put it on, pick a profession, it gathers for you". *Ring on:* the HUD the player knows appears over the hall and their Depot totals float over the Forge. |
-| **30 s – 3 minutes** | Walk to the Forge: recipes shown as the piece itself turning on the anvil, cost in the four base resources plus a refined good, and a green CRAFT when the Depot covers it. The first recipe is priced at a few hours of idle gathering, so a wearer of a week owns it on the spot; a newcomer sees exactly how far their ring has to go. |
-| **3–10 minutes** | The quest board: three quests from Alara, each a target the ring will hit on its own ("bring 400 bone") plus one thing only the hall can do ("hand it to the Bone-Warden in the undercroft"). Take one. The training yard: hit the dummy with the piece you just forged; the number that pops is the ring's ATTACK stat. |
-| **Natural stopping point** | The piece is in the wardrobe, the quest is on the HUD with its bar moving while the ring gathers elsewhere, and the undercroft door reads the raid's next bell. Leave; the ring keeps working; come back when the bar is full. |
+| **0–5 seconds after control** | The Champions' Hall: a round stone chamber, a lit stone at its centre with this week's Champion's banner over it, the Forge glowing to one side, the Vault to the other, the Gate to the undercroft behind. Other players visible. One line over Alara at the Forge: "Bring me iron, I'll give you a blade." |
+| **5–30 seconds** | The Vault: a stone counter that reads the wallet and shows what it holds (wood, rock, meat, bone) with one button, DEPOSIT. The player picks how much to move in; the numbers appear on the Vault's wall. A wallet with nothing sees "Resources come from the Guildstone Ring" and a link, and can still walk the hall and watch a raid. |
+| **30 s – 3 minutes** | The Forge: the first weapon line (Sword & Shield) turns on the anvil, cost in resources, CRAFT green when the Vault covers it. The first blade is priced so that any wallet with a week's resources owns it on the spot. It mints; it is on the avatar; the dummy in the yard takes a hit and shows a number. |
+| **3–10 minutes** | The Gate: a party board with up to four seats, one raid (the Bone-Warden), one difficulty, GO. The doors hold 15 s for others in the hall to join. Three rooms of undercroft and the Warden; light / heavy / guard / roll; downed players raised by an ally beside them. |
+| **Natural stopping point** | WARDEN SLAIN: time, champion XP, Wardenstone found, gear found; "Champion level 2". Back in the hall the Forge shows what the Wardenstone is for, and the Vault wall shows what the next piece needs. |
 
 **Player-facing How to Play**
 
-- Wear the ring, pick a profession, it gathers wherever you are
-- Bring the haul to the hall: forge gear, take quests, fight the raid
-- Guildmates in the hall see what you forged
+- Deposit resources, forge a weapon, wear it
+- Raid the undercroft with up to three others
+- Level up, forge better, be the week's Champion
 
 ---
 
@@ -56,34 +56,34 @@ The twist is the split: the grind happens anywhere in Decentraland, through a we
 
 | # | Step (verb) | What the player does (Player input → what they see or hear → what changes) | Why do it again? |
 |---|---|---|---|
-| 1 | **Gather** (ring, anywhere) | Choose a profession on the ring's dock → every 3 s a gather tick, the bag fills, BANK IT moves it to the Depot → levels, mastery, berries found. Runs in any scene, including this hall. | Already the live loop; the World gives it a destination. |
-| 2 | **Forge** (hall) | Stand at the Forge, pick a combat piece (blade, shield, focus, one per hero class to start) → the piece turns on the anvil with its cost; CRAFT → the server spends the Depot, the Rewards server mints the wearable, the piece shows on the player in the hall. | Three classes, tiers that need the undercroft's rare material, and a visible trim per tier. |
-| 3 | **Quest** (board → world → hall) | Take one of three quests → a bar on the ring HUD fills as the ring gathers anywhere → return to the hall and hand in at the named NPC → coins, a refined good, and the next quest in Alara's chain. | The chain tells the hall's story one hand-in at a time, and the hand-in is where friends are standing. |
-| 4 | **Raid** (undercroft, V1) | Up to four heroes at the undercroft door; the bell rings every 20 minutes → a three-room fight to the Bone-Warden with the ring's hero (Knight / Assassin / Warlock, HP / ATTACK / SPEED / RECOVERY) made physical: light, heavy, guard, roll → the Warden drops the Forge's rare material to every hero who hit it. | The only source of the material the Forge's upper tiers need. |
-| 5 — optional | **Show** | The wardrobe and the hall itself: forged pieces on your avatar, the guild tag over your head, the hall board (fastest Warden kill this week, most forged this week, by guild). | A guild that fills the board is seen by everyone who walks in. |
+| 1 | **Deposit** | Walk to the Vault → it reads the wallet's resources (one call to the ring's bank, one-way) → choose amounts, DEPOSIT → the Vault wall shows the hall's stores for this wallet. | The Forge's upper tiers cost more than one deposit; the Vault keeps the running total. |
+| 2 | **Forge** | Pick a line (Sword & Shield / Twin Daggers / Staff) and a piece (weapon, then helm, chest, legs) → the piece turns on the anvil with its cost in resources and Wardenstone → CRAFT → the server debits the Vault, mints the wearable to the wallet, the piece appears on the avatar in the hall. | Three lines, four pieces each, +1/+2 tiers with a visible trim, and the tiers need the raid. |
+| 3 | **Raid** | Up to four at the Gate, GO → three rooms and the Bone-Warden (V1 adds the Hollow Knight in a second wing) → light / heavy / guard / roll, the weapon line sets the moveset, armor pieces set defence → WARDEN SLAIN pays champion XP, Wardenstone and a chance at a set piece to every player who hit the boss. | Hard and Nightmare multiply health, damage and Wardenstone; a party makes them possible. |
+| 4 | **Level** | Champion XP from raids → champion level (1–30) → unlocks Hard at 5, the second line's pieces at 8, Nightmare at 14, +2 tier at 20. Level is shown under the name in the hall and on the party seats. | Each unlock is a new fight or a new piece, not a bigger number. |
+| 5 | **Rank** | The Champion board on the hall's stone: champion points this week (raid clears weighted by difficulty and time) → top ten with names, the leader's banner over the stone and the title **Raiding Champion** until Monday 00:00 UTC. | The title is held, not kept; the one who lost it knows who took it. |
 
 | | |
 |---|---|
-| **One complete loop takes** | **3–5 minutes** in the hall for a forge-and-quest visit: walk in, craft, take or hand in a quest, hit the dummy, leave. The gathering between visits is idle and happens elsewhere: the first recipe is priced at about 4 hours of ring time. A raid (V1) is **4–6 minutes** from bell to drop. |
-| **Decision, challenge, or expression** | Which profession to run for the piece you want (bone for the Assassin blade, rock for the Knight shield); which quest to carry; in the raid, when to guard and when to spend the hero's RECOVERY; which piece and trim to wear in the hall. |
-| **Shortest satisfying visit / typical session** | One hand-in or one craft, **3 minutes** / a craft, two hand-ins and a raid bell, **15–20 minutes** |
-| **Why repetition 10 differs from repetition 1** | First, **the hero**: by visit ten the ring's hero has levels in four stats and a forged piece per slot, so the raid is a different fight. Second, **the chain**: Alara's quests move from "bring 400 bone" to "forge the Warden's key" to "bring three guildmates to the undercroft", so hand-in ten needs people. Third, **tiers**: the Forge's +1/+2 trims need the Warden's material, so by visit ten the Forge asks for the raid. |
+| **One complete loop takes** | **4–6 minutes** for a Normal run of the Bone-Warden from GO to WARDEN SLAIN. A hall visit around it (deposit, forge, check the board) is **2–3 minutes**. Payoffs inside the run: Wardenstone per room, XP per kill, a drop toast on the Warden. |
+| **Decision, challenge, or expression** | Which line to forge first (Sword & Shield guards, Twin Daggers roll, Staff keeps range); how much to deposit now against the next tier; which difficulty for this party; when to guard and when to spend stamina; who holds the Warden while others hit; which set and trim to wear in the hall and everywhere else. |
+| **Shortest satisfying visit / typical session** | One raid, **5 minutes** / a forge, three raids and the board, **20–30 minutes** |
+| **Why repetition 10 differs from repetition 1** | First, **the gear**: a +1 Twin Daggers set rolls through a room a Normal Sword & Shield had to guard through, and the Staff in the fourth seat changes the room again. Second, **the difficulty**: Hard and Nightmare on a fight the party knows, for ×2 / ×3 Wardenstone. Third, **the board**: by run ten the player has a name above theirs and a Monday deadline. Layouts are fixed; fresh play comes from gear, people and difficulty. |
 
 **Pillars**
 
-1. **The grind is somewhere else.** Nothing in the hall asks you to stand and click; the hall spends what the ring gathered.
-2. **Everything you make, you wear.** Forged pieces are Decentraland wearables, minted to the wallet, on your avatar in every scene.
-3. **One ledger, two doors.** The ring and the hall read the same Depot; nothing earned in one is invisible in the other.
+1. **Forge it or don't have it.** Every wearable in the hall was crafted at the Forge by the player wearing it, from resources and raid material.
+2. **Better with a party, never blocked without one.** Normal is clearable alone; Hard and Nightmare are tuned for four.
+3. **One champion a week.** The title turns over every Monday, and the whole hall sees who holds it.
 
 ---
 
 ## 4. Why Players Come Back
 
-*The ring brings people back on its own: it is on their hand, and the Depot grows while they are elsewhere. The World's job is to be the place that growth is for.*
+*First session is bought with fun, next-day with an appointment, long-term with friends. Decentraland sends no notifications, so the reason to return lives in the player's memory or in their friends.*
 
 ### 4.1 The next-day (D1) sentence
 
-> "A player who enjoyed their first session returns the next day because **the quest bar on their ring HUD filled overnight** and the hand-in, Alara's next chapter and the Forge recipe it unlocks are **in the hall, not on the ring**."
+> "A player who enjoyed their first session returns the next day because **the Champion board** shows their name a few points behind someone else's and the board **resets Monday 00:00 UTC**, so the points that take the title must be earned this week."
 
 ### 4.2 The progression chain
 
@@ -91,62 +91,62 @@ The twist is the split: the grind happens anywhere in Decentraland, through a we
 
 | Moment | What persists or has been built? | What becomes possible next? | How can another player tell? |
 |---|---|---|---|
-| **End of first session** | A ring (minted if they had none), a profession running, one quest taken, and for a wearer of a week, the first forged piece of their class. | The hand-in tomorrow; the second recipe, which needs a refined good from the ring's Workshop. | The forged piece on the avatar, anywhere in Decentraland. |
-| **End of first week** | Three quests handed in, two forged pieces, the Workshop queue feeding planks and bricks to the Forge, the first raid bell attended (V1) and a sliver of Warden material. | Tier +1 on a piece; Alara's "bring three guildmates" quest; the hall board. | The +1 trim; the name on the hall board; the guild tag over a hero in the undercroft queue. |
-| **Week 3+ — what takes more than two weeks?** | A full three-piece set at +2 for one hero class. +2 needs Warden material from several raids, and the third piece's recipe is the reward of the chain's last quest, which needs four people at the door. | Carrying newcomers through the Warden; the second class's set; a guild's name on the board three weeks running. | The complete set with +2 trim on a hero standing in the hall, seen from the door. |
+| **End of first session** | Resources in the Vault, one forged weapon minted to the wallet, one Warden kill, champion level 2–3, a handful of Wardenstone, a place on the board. | Helm from the first line (Wardenstone plus resources); a party, now the controls are known; Hard at level 5. | The weapon on the avatar, in the hall and in every other scene; the name on the board. |
+| **End of first week** | Champion level 8–10; a full first-line set (weapon + three armor pieces) with one piece at +1; Hard cleared; the second line's weapon forged; two or three names raided with more than once; top ten on the board at least once. | Nightmare at 14; +2 at 20; the Hollow Knight wing (V1) with its own set; the choice each evening between points for the board, Wardenstone for the tier, or a party for Nightmare. | The +1 trim; the second weapon on the hip; the party seat with level 9 beside a stranger's level 3. |
+| **Week 3+ — what takes more than two weeks?** | A +2 set from one line plus a second line's weapon, and the Raiding Champion banner at least once. +2 needs Nightmare Wardenstone, which needs a party at level 14+; the title needs a week of raids against everyone else's. | Carrying newcomers through Nightmare; the Hollow Knight's set; holding the title two weeks running. | The banner over the stone with their name; the +2 trim on a hero standing in the hall: the gear a newcomer asks about. |
 
-*End of first week as a scene:* You come into the hall on a Sunday with the quest bar full since Thursday. Alara's hand-in gives you the Forge recipe for the Knight shield, and your Depot already covers it because the ring has been mining rock in the background all week; the shield shows on your arm as the server mints it. Two guildmates are at the undercroft door with four minutes to the bell, so you join them, the Bone-Warden falls on the second try, and the material it drops is the last you needed for +1 on the blade. On the way out you check the board: your guild is second on Warden kills this week, one behind.
+*End of first week as a scene:* You come into the hall on a Sunday and check the stone first: the banner is someone else's, and you are fourth, nine points behind third, with the reset tomorrow. Two players you cleared Hard with on Thursday are at the Gate with a Staff and a Sword & Shield, one seat open, Nightmare set. You have the level for it since Friday. The Warden falls on the second try, the Wardenstone takes your daggers to +1, and the trim shows when you turn back to the hall. The points put you second. Tomorrow the board is clean and you know who to beat.
 
-*Currency:* the ring's economy, unchanged. Base resources (wood, rock, meat, bone) and refined goods come from the ring's gathering and Workshop; **coins** come from the Bank and quest hand-ins; **berries** are the ring's premium currency (daily share, rare finds). The Forge consumes base and refined resources plus the Warden's material; quests pay coins and refined goods; no new currency is introduced and nothing is tradeable or purchasable for cash in the hall. **Where the ledger lives:** the ring's backend is the single source of truth for everything with value (resources, coins, berries, levels, suits, guilds, heroes, Storm). The World's authoritative server keeps world state only (quest progress, raid rooms, hall board) in its own Storage and spends from the ledger through a narrow, keyed server-to-server call, the same path the ring already uses to mint suits. Main abuse risk: a client claiming a hand-in or craft it did not pay for; both are server-side on the authoritative server and settled against the ledger, so the client only ever asks.
+*Currency:* **resources** (wood, rock, meat, bone) enter the hall only through the Vault deposit and leave only through the Forge. **Wardenstone** drops only in raids (×2 Hard, ×3 Nightmare) and is consumed by the Forge for armor pieces and tiers. No coins, no trade, no cash purchase; every unit that enters the hall is sunk into a wearable or nothing. **Where it lives:** the hall's Vault balances, Wardenstone, champion XP, gear tiers and the board are the World's own state in the authoritative server's `Storage`; the Vault's deposit is the one call out, to the ring's bank, which debits the wallet there and returns what was moved. Main abuse risk: a client claiming a craft or a kill it did not earn; both are resolved on the server (the Forge debits and mints server-side, the raid's damage and kill are simulated server-side), so the client only ever asks.
 
 ### 4.3 Two return hooks
 
 | Selected hook | Exact trigger or timing | What the player anticipates | Reminder channel + no-reminder fallback |
 |---|---|---|---|
-| **1. Quest bar on the ring** *(V0 build)* | The active quest's target is tracked by the ring's gather ticks anywhere in Decentraland; the HUD shows "Alara: 310 / 400 bone" and turns green at the target, with the hall as the only hand-in. | "It'll be full by tonight; the hand-in gives me the shield recipe." | The ring HUD itself, visible in every scene; the ring's mail and lobby line when a chain chapter opens. Fallback: the green bar on the hand when they next log in. |
-| **2. Raid bell** *(V1 build)* | The undercroft bell rings every 20 minutes, server-timed, posted to the ring's lobby chat ("Warden bell in 5 min, 2 at the door") so wearers elsewhere in Decentraland can jump in. | "Two more Warden kills for +2 on the blade; the guild needs one more for the board." | Lobby chat line and the guild channel the ring already has; fallback is the door's countdown in the hall. |
+| **1. Collection — forged sets** *(V0 weapon, V1 armor)* | Every piece is a wearable minted on craft; the Forge shows each line x/4 and names the material and level each missing piece needs; the Warden has a chance to drop an armor piece outright. | "Helm needs 12 Wardenstone; two Hard runs." When complete the set is on the avatar everywhere in Decentraland. | No reminder needed: the Forge shows the gap every visit; fallback is the set itself on another player in the hall. |
+| **2. Weekly Champion board** *(V1 build)* | Champion points per raid clear, weighted by difficulty and time; top ten on the stone and the leader's banner over it; resets **Monday 00:00 UTC**, automatic, no content work. | "Nine points off third. One Nightmare clear tonight." The holder who loses the banner sees whose name replaced theirs. | The banner and board are the first thing seen on entry; the community channel posts Monday's Champion; fallback is the player's memory of a gap that is closable. |
 
-*Not in V1, parked for later rounds: guild halls (a wing per guild), the Storm auto-battler rendered in 3D, trading between players — see §9 cuts.*
+*Not in V1, parked for later rounds: crews / guilds, a third raid wing, daily contracts — see §9 cuts.*
 
 ---
 
 ## 5. Social by Design
 
-*Playable alone, better with others. The ring already has guilds (8), a lobby, guild chat and whispers; the hall gives those people a floor to stand on.*
+*Playable alone, better with others.*
 
 | | |
 |---|---|
-| **The repeatable social loop** | A player hands in a quest at the Bone-Warden's altar → the guildmate forging beside them sees the chapter card and asks in guild chat what it took → both queue at the undercroft door for the bell → the Warden's material drops for both, the guild's kill count ticks on the hall board → they meet at the next bell. |
-| **The disappearance test** | The ring, the Forge, the quest chain's first two thirds and the wardrobe all work alone. What breaks is **the undercroft** (the Warden is tuned for three or four heroes; a lone Knight can clear the first room and not the third) and **the last chapter** of Alara's chain, which asks for guildmates at the door. A solo player keeps the hall and the first two forge tiers and loses the top. |
-| **From strangers to a group** | The undercroft door lists who is waiting by hero class and level, and the bell counts down in the open, so a stranger sees "Knight 12, Assassin 9, —, —" and knows a Warlock is wanted. Guild tags over heads carry across from the ring. |
-| **Recognition & continuity** | Names and guild tags over heroes; the hall board lists guilds and players by Warden kills and pieces forged this week; forged pieces are wearables, so a player is recognised in the hall by what is on their back. What persists: the board history, the ring's lobby and guild chat, the set itself. |
-| **Quiet hours & player counts** | Alone: the Forge, the board, the quest chain through chapter four, the training yard. Social play becomes viable at **2** (a two-hero Warden run on the first room's difficulty). Ideal group **4**; the undercroft holds **4** per run, several runs in parallel. A solo arrival meets someone through the undercroft door list and the ring's lobby chat, which shows who is in the hall. |
-| **Drop-in / drop-out** | The door is open until the bell; the run is closed after. A hero can leave mid-run; the others continue. A downed hero is raised by an ally standing beside them; if all fall, the Warden resets to full and the door reopens for the next bell. |
-| **Visible play (the bystander test)** | At the Forge a bystander sees the piece turn on the anvil, the Depot numbers drop, and the piece appear on the player's avatar, and understands the game is "stuff goes in, gear comes out". In the training yard they see a heavy blow stagger the dummy with a number that matches the ring's ATTACK. |
-| **Shareable play (the memorable moment)** | Four heroes of three classes on the undercroft floor as the Bone-Warden breaks, one raised a second before, and the material toast on every screen while the guild's count on the hall board ticks up where everyone upstairs can see it. |
-| **Bring-a-friend** | The moment Alara's chain asks for three guildmates at the door, or a wearer sees the FREE RING pedestal and realises the friend they idle with could be gathering too. What changes: a quest that was a wall becomes a bell, and two Depots feed one raid. |
+| **The repeatable social loop** | A player presses GO at the Gate → for 15 s everyone in the hall sees "{name} is going to the Warden · Hard · 1/4" over the Gate and at the foot of the screen → a second player steps in and the seat shows their line and level → Hard becomes clearable, the Staff covers what the Sword & Shield lacks → both get the Wardenstone and the points, and the same two are worth finding again. |
+| **The disappearance test** | Deposit, Forge, Normal raids, the yard and the board all work alone. What breaks is **Hard and Nightmare** (tuned for three or four; a lone player clears the first room and not the Warden) and so **+2 tiers**, which need Nightmare Wardenstone. A solo player keeps roughly two thirds of the game and loses the top. |
+| **From strangers to a group** | The Gate's party board shows the raid, the difficulty and the seats taken, each seat with the player's line icon and champion level, so a newcomer sees "Warden · Hard · Sword 9, Staff 7, —, —" and knows what is wanted before they click. No text needed. |
+| **Recognition & continuity** | Names and champion level over players in the hall and in the run; the board lists names by points; the banner names one. What persists: the board history, the sets on players' backs, the party board showing a familiar name. |
+| **Quiet hours & player counts** | Alone: Normal raids, the Forge, the Vault, the yard. Social play becomes viable at **2** (a two-player Hard run). Ideal group **4**; a party holds **4**; several parties can run in parallel. A solo arrival meets someone through the Gate's open parties and the hall itself; the title holder is usually there. |
+| **Drop-in / drop-out** | A party is joined from the hall while its doors are open (15 s after GO, extended per joiner, or held by the leader); once closed, closed. A member can leave a run from the door button; the others continue. A downed player is raised by an ally standing beside them; if all fall, everyone returns to the hall and the Warden is whole again. |
+| **Visible play (the bystander test)** | At the Forge a bystander sees the piece turn on the anvil, the Vault numbers drop, and the piece appear on the player's avatar, and understands "resources in, gear out". In the yard they see a heavy blow stagger the dummy. |
+| **Shareable play (the memorable moment)** | Four players of three lines on the undercroft floor as the Bone-Warden breaks on Nightmare, the last of them raised a second before, the Wardenstone toast on every screen, and upstairs the banner over the stone changing to one of their names. |
+| **Bring-a-friend** | The moment a player reaches level 5 and the Hard seat list is empty, or the Forge shows +2 and they know no one does Nightmare alone. What changes when the friend arrives: a wall becomes a run, and the points land for both. |
 
 ---
 
 ## 6. Mobile-First
 
-*The ring is UI-only and already runs on the mobile Explorer at the size it ships (2 MB cap). The hall is a new scene, so its touch mapping is designed in rather than retrofitted.*
+*A new scene, so touch is designed in rather than retrofitted. Every verb below is a trigger area or a button; nothing hovers, nothing swipes.*
 
 **Every core-loop verb on touch**
 
 | Core-loop verb | How it works with touch controls |
 |---|---|
-| **Gather** | Unchanged: the ring's dock and panels are tap targets already; the ring is the mobile-first half of the game. |
-| **Forge** | The Forge is a trigger area, not a hover target; recipes are a one-column list of large cards, CRAFT is one tap with a confirm sheet showing what leaves the Depot. |
-| **Quest** | The board is a trigger area; three quest cards fill the screen; TAKE is one tap. Hand-in: walk into the NPC's trigger area, one tap. |
-| **Raid** (V1) | Left thumb moves. One attack button: tap light, hold heavy. Guard and roll are two buttons beside it (no gestures). The hero's four stats do the rest; a touch Knight guards more and dodges less by design. |
-| **Show** | The wardrobe and the board are full-screen panels with thumb-height rows. |
+| **Deposit** | The Vault is a trigger area; the deposit sheet is full-screen with large steppers and one DEPOSIT button. |
+| **Forge** | The Forge is a trigger area; lines and pieces are a one-column list of large cards; CRAFT is one tap with a confirm sheet showing what leaves the Vault. |
+| **Raid** | Left thumb moves. One attack button: tap light, hold heavy. Guard and roll are two buttons beside it (no gestures). The line sets the moveset, so a touch player picks Sword & Shield for a forgiving guard. |
+| **Level** | Level and XP bar are read on the clear screen and under the name; nothing to operate. |
+| **Rank** | The board is a full-screen panel with thumb-height rows; the banner needs no interaction. |
 
-**UI plan.** In the hall the ring's HUD already occupies the bottom edge, so the hall adds nothing persistent: every hall interaction is a trigger area that opens a full-screen panel and closes it. In a raid only health, stamina and the room count are on screen, in the bottom third.
+**UI plan.** Nothing persistent in the hall; every interaction opens a full-screen panel and closes it. In a raid only health, stamina and the room count are on screen, in the bottom third within thumb reach.
 
-**Performance.** Target: 60 fps on recommended desktop; 30 fps on a **Samsung Galaxy Z Fold 8** (the developer's phone) with eight avatars in the hall. The hall is one Synty kit and a few props, budgeted at **under 40 MB** deployed; the undercroft loads on entry. The ring's own cost (UI only) is already measured on mobile.
+**Performance.** Target: 60 fps on recommended desktop at four players; 30 fps on a **Samsung Galaxy Z Fold 8** (the developer's phone) at four players in the undercroft and eight avatars in the hall. The hall is one Synty kit; the undercroft loads on entry; the deployed scene is budgeted at **under 60 MB**. Per-realm kits are not loaded until a wing exists.
 
-**Desktop-only dependencies.** Checked against the mobile missing-features list (reviewed August 2026). The ring uses `USE_FETCH` only; the hall adds trigger areas and, in V1, keyboard combat behind one input module with touch as a second source. `LightSource` on the guildstone and braziers ships on mobile since v1.13.0; emissive textures carry the look before that. The ring's UI uses nine-slice panels that mobile stretches, so the hall's panels use flat backgrounds with a border texture. Nothing depends on gestures, hover or voice.
+**Desktop-only dependencies.** Checked against the mobile missing-features list (reviewed August 2026). Keyboard combat sits behind one input module with touch as a second source. `LightSource` on the stone and braziers ships on mobile since v1.13.0; emissive textures carry the look before that. Panels use flat backgrounds with a border texture (mobile stretches nine-slice). Nothing depends on gestures, hover, voice or daily quests.
 
 ---
 
@@ -154,54 +154,54 @@ The twist is the split: the grind happens anywhere in Decentraland, through a we
 
 **Story / world**
 
-The Knights of Antrom guard a guildstone, a standing stone that remembers every oath sworn on it, and Alara, its keeper, bound a sliver of it into rings so the knights could gather for the order wherever they roamed. The hall is where the rings return. Under it, in the undercroft, something the stone was built to hold is stirring, and the Bone-Warden is its gatekeeper.
+Beneath the Champions' Hall the Bone-Warden guards a gate the knights of Antrom sealed and never meant to open. Alara keeps the Forge above it, turning what the knights bring her into blades and mail, because whatever is behind the Warden will have to be fought by whoever is best armed that week. The banner over the stone says who that is.
 
 **Visual direction.**
 
-One round hall, Synty fantasy kits, seen over the shoulder: the lit guildstone at the centre, the Forge's glow to one side, the quest board and Alara to the other, the undercroft stair behind; warm stone and torchlight above, cold blue below. Heroes wear forged pieces and the ring's profession suits; guild tags float with names. UI reuses the ring's panel kit (parchment and navy, gold on paper) so the hall and the HUD read as one product. **Signature:** a ring wearer at the Forge, their Depot numbers in the air over the anvil dropping as a blade appears on their hip, with two guildmates waiting at the undercroft door behind. Sound: the ring's gather and craft chimes carry into the hall; the Forge adds a hammer, the undercroft a bell.
+One round hall, Synty fantasy kits, over-the-shoulder camera: a lit standing stone at the centre with a banner above it, the Forge's glow to one side, the Vault's counter to the other, the Gate's stair behind; warm stone and torchlight above, bone-white and cold blue below. Players wear forged lines and sets; name and champion level float above them. UI is parchment and navy with gold headings. **Signature:** a player at the Forge, the Vault numbers over the anvil dropping as a blade appears on their hip, two players waiting at the Gate behind with the countdown lit. Sound: a hammer at the Forge, the Gate's chain, each line's hit with its own weight (shield thud, dagger snap, staff crack).
 
 ---
 
 ## 8. Audience & Comparables
 
-**Audience.** Ring wearers and the Decentraland regulars who would wear one: people who like a game that runs while they do something else, and want the place they bring the result to be a world with other people in it.
+**Audience.** Players who like crafting gear from what they have gathered and then proving it in a fight, arriving at a public World alone and hoping to find a party; in Decentraland, wallets that already hold Antrom resources and want something to spend them on.
 
 **Comparables** — *one outside Decentraland, one inside.*
 
-| | Melvor Idle (Games by Malcs, 2021) | Wondermine (Decentraland, 2020–) |
+| | Monster Hunter Rise (Capcom, 2021) | Wondermine (Decentraland, 2020–) |
 |---|---|---|
-| **What works** | Skills that level while you are away, a crafting tree that turns gathered goods into gear, and combat that uses the gear: the full RuneScape loop with no 3D and no walking, playable in a browser tab. Proof that an idle gather-craft-fight loop holds players for years. | A gather-and-craft loop Decentraland players came back to daily: swing at meteors, bank gems, craft a better pickaxe. Everyone stood in the same field, so it was social without a party system. |
-| **What does not fit** | Entirely private: nobody sees your gear, nothing you make exists outside the tab. The combat is a timer too. | The grind is standing in one parcel clicking, and the reward is a currency and a tool, not something you wear or a fight you win. |
-| **What we do differently** | The idle half is a wearable that runs anywhere in a public world, and the gear is a Decentraland wearable on your avatar in every scene. The combat is a raid you fight in person with the stats the idle half levelled. | The grind happens wherever the player already is, through the ring; the hall is for spending, forging, questing and the raid, so the time in the World is the interesting part, not the waiting. |
+| **What works** | The loop is hunt → carve material → forge gear → hunt harder, and the gear is the progression: a weapon line defines how you fight, and a set shows what you killed. Four-player hunts in a shared hub where other hunters see your armor. | A gather-and-craft loop Decentraland players came back to daily for years: bank the gems, craft a better pickaxe. Everyone stood in the same field, so it was social without a party system. |
+| **What does not fit** | Hunts run 15–30 minutes; the hub is instanced to four; gear exists only inside the game. | The grind and the craft are the whole game; nothing you make is a fight, and the reward is a tool and a currency, not a wearable. |
+| **What we do differently** | Five-minute raids in a public World where the hub is everyone; the gear is a Decentraland wearable on the avatar in every scene; a weekly title the whole hall can see. | The gathering is done elsewhere and arrives at the Vault; the hall is for forging, raiding and ranking, so the time in the World is the fight, not the waiting. |
 
 ---
 
 ## 9. 4 Week Plan (v1 scope)
 
-*Team: one developer at about 20 hours a week, 80 hours across the four weeks. The ring and its backend are live and stay as they are; the World is a new scene on the authoritative server, in the `AntromAFK` repo, deployed to the KOA NAME from week 2 so the "live" milestone is met early. Proposed **V0 scope**: weeks 1–2, the hall with the Forge and the quest board against the live ledger. **V1** adds the undercroft raid and the touch layer.*
+*Team: one developer at about 20 hours a week, 80 hours across the four weeks. A new scene on the authoritative server in the `AntromAFK` repo, deployed to the KOA NAME from week 2 so the "live" milestone is met early. Proposed **V0 scope**: weeks 1–2, the hall, the Vault, the first weapon line and the Bone-Warden on Normal, playtested with one party. **V1** adds the lines, armor, tiers, difficulties, the second wing and the Champion board.*
 
 | Week | What is playable / done |
 |---|---|
-| 1 — Prototype definition (20 h) | Hall blockout from the Synty kit; authoritative server scaffold (`isServer()`, Storage, EnvVar); the **ledger bridge**: the server reads a wearer's Depot and hero from the ring backend and spends through one keyed endpoint; FREE RING pedestal wired to the existing dispenser. Playable: walk in, see your real Depot over the Forge. |
-| 2 — Core interaction + first-group test (20 h) | **Forge**: one combat piece per hero class (collection created, Rewards dispenser per piece), cost shown and spent, mint to wallet, piece on the avatar. **Quest board**: Alara's chain, chapters 1–4, targets tracked by the ring's gather ticks, hand-in at an NPC. Deployed to the NAME. Milestone playtest: two ring wearers forge and hand in within one session; watch one newcomer take the ring at the pedestal. |
-| 3 — Core systems refinement (20 h) | **Undercroft**: three rooms and the Bone-Warden, up to four heroes, bell every 20 minutes, hero stats from the ring (HP / ATTACK / SPEED / RECOVERY) driving the fight; Warden material drop; Forge tiers +1/+2 that consume it; hall board (Warden kills, pieces forged, by guild, Monday reset). Bell line posted to the ring's lobby chat. |
-| 4 — Playable prototype, final design direction (20 h) | Chapters 5–6 of the chain (the guildmates-at-the-door quest); touch layer (stick, tap/hold attack, guard, roll; trigger-area panels); **mobile playtest** on the Galaxy Z Fold 8 at eight avatars in the hall; polish pass on the Forge and board UI; design direction locked from the week-2 and week-4 sessions. |
+| 1 — Prototype definition (20 h) | Hall blockout; authoritative server scaffold (`isServer()`, `Storage`, `EnvVar`); the **Vault**: read a wallet's resources and deposit them (one keyed call out, idempotent, settled on both sides); the **Forge** with the Sword & Shield weapon (collection created, dispenser key in `EnvVar`, mint from the server). Playable: deposit, forge, see the blade on the avatar. |
+| 2 — Core interaction + first-group test (20 h) | **The Gate and the Bone-Warden**: party board (4 seats, 15 s doors), three rooms, the Warden with three phases, light / heavy / guard / roll, raise an ally, server-simulated hits; champion XP and level; Wardenstone drop. Deployed to the NAME. Milestone playtest: one party of two clears the Warden; watch one true newcomer for §2's timings. |
+| 3 — Core systems refinement (20 h) | **Twin Daggers and Staff** lines with their movesets; **armor pieces** (helm, chest, legs per line) costing Wardenstone; **+1 / +2 tiers** with trims; **Hard and Nightmare** (health, damage, Wardenstone multipliers); level gates (5 / 8 / 14 / 20). Combat and hall audio. |
+| 4 — Playable prototype, final design direction (20 h) | **Champion board** on the stone with Monday 00:00 UTC reset, the banner and the title; **the Hollow Knight** wing (second raid, same rooms kit, its own boss and set); touch layer and the **mobile playtest** on the Galaxy Z Fold 8 (a phone player clears Normal; 30 fps at four); design direction locked from the week-2 and week-4 sessions. |
 
 **What keeps the experience changing after launch**
 
-- Without building a new room, the **featured Forge recipe and the board's featured stat** rotate every **Monday** (one server value each, alongside the ring's existing Monday guild-points reset).
-- If an update is skipped, **the bell, the Monday board and the chain's gating on raid material** still create variation: a fresh board and a trim still unfinished.
-- Progression never resets; **forged pieces are wearables and cannot be taken back**; a new player can contribute within **3 minutes** by taking the ring at the pedestal and standing in a Warden run on the first room, where the Knight's guard matters more than level.
-- One player behaviour that would change what we build next: **guilds queuing at the door as a full four three bells running** would move guild wings (a hall per guild) to the front of V2.
+- Without building a new room, we rotate **the board's featured raid and difficulty** every **Monday** (one server value; the reset is automatic).
+- If an update is skipped, **the Monday reset and the drop tables** still create variation: a clean board and a set still unfinished.
+- Progression never resets; **forged wearables cannot be taken back**, and champion level and Wardenstone persist; a new player can contribute within **3 minutes** by forging the first blade and taking a Normal seat, where a fresh player still clears rooms and shares the Warden's drop.
+- One player behaviour that would change what we build next: **the same four names at the Gate three evenings running** would move crews (a shared banner and board entry) to the front of V2.
 
 **Not building in v1**
 
-1. **Guild wings.** The hurtful cut: eight guilds would each want a door of their own, and the ring's HQ and tech tree are begging for a 3D home. Too much surface for 80 hours; first in V2.
-2. **The Storm in 3D.** The ring's auto-battler stays on the ring; the undercroft is a different fight (real-time, in person) and does not try to replace it.
-3. **Trading.** Resources and pieces move only ring → ledger → Forge → wallet. No player-to-player trade, so the ledger bridge stays one-way and auditable.
+1. **Crews / guilds.** The hurtful cut: a shared banner is the obvious next step after a personal one, and the strongest long-term hook known. Too much surface (roster, moderation) for 80 hours; first in V2.
+2. **A third raid wing.** Two bosses, two sets. Content is consumed once; hooks are not.
+3. **Daily contracts.** The surest D1 lever, but the board does that job in V1 and contracts need the Wardenstone economy settled first.
 
-*Standing non-goal: never move the grind into the World. If the hall ever asks a player to stand and click for resources, the ring has lost its reason to exist.*
+*Standing non-goal: the hall never asks a player to stand and click for resources. Resources arrive through the Vault; the World is for forging, raiding and ranking.*
 
-**Top risk + fallback.** The ledger bridge: two servers (the ring's backend and the World's authoritative server) agreeing on one Depot without double-spends or a stuck craft. Mitigation: every spend is a single keyed call to the ring backend that debits and returns the new balance in one Firestore transaction (the path that already mints suits), and the World server never holds a balance of its own. Fallback: if the bridge is not stable by mid-week 2, V0 ships the Forge as **read-only plus a hand-in queue** (the server records the craft, an admin settles it within the hour through the existing dashboard), and the quest board, which only reads, ships as designed.
+**Top risk + fallback.** Server-simulated combat for four players on the authoritative server holding up at the raid's pace (hits, stagger, raise) with acceptable latency, with no earlier evidence on this runtime. Mitigation: week 2 builds the Warden with server-side hit resolution first and measures before adding phases; the moveset stays small (four actions). Fallback: if the server cannot resolve hits at pace by mid-week 2, V0 ships with **client-side hits and server-side kill and loot validation** (damage totals checked against the weapon's range and the run's length), and the full server simulation moves to V1 week 3.
 
 ---
