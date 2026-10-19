@@ -12,12 +12,12 @@ This repository is the project for a Decentraland Creator Success V0 application
 
 - Game Design Document: [`design/gdd.md`](design/gdd.md)
 - Design decisions log: [`design/decisions.md`](design/decisions.md)
-- World: **`koa.dcl.eth`** — test scene deploy pending; link will be added here when it is live: `https://play.decentraland.org/?realm=koa.dcl.eth`
+- Test scene: World **`koa.dcl.eth`** — [play.decentraland.org/?realm=koa.dcl.eth](https://play.decentraland.org/?realm=koa.dcl.eth)
 - Studio: KOA · Discord `koa_matt`
 
-## Status
+## Test scene
 
-The World is not yet built. The repo currently holds an earlier crafting prototype whose Vault / Forge panel UI (`src/ui/panels.tsx`, `src/ui/components.tsx`) is being reused; the test scene for the application (the Vault deposit and the Forge, the first interaction of the core loop) is the next step and will replace the prototype's gathering code.
+The test scene covers the first interaction of the core loop: the Vault (deposit resources, see them on the hall's wall) and the Forge (spend them on the first weapon). It runs on the SDK7 authoritative server, with the Vault balance and the forged piece held server-side in `Storage`.
 
 ## Commands
 

@@ -18,7 +18,7 @@
 |---|---|
 | **Player promise** | Bring resources to the hall, forge wearables you keep, raid in them, and climb to Raiding Champion of the week. |
 | **Primary player** | For players who already enjoy crafting gear from what they gathered and proving it in a co-op fight, arriving alone at a public World from the Antrom community, looking for a party and something to spend their resources on. |
-| **Current status** | **Idea + core-mechanic prototype.** This repo holds an earlier crafting prototype whose Vault / Forge panel UI is being reused; no playable World yet (the small test scene for this application is the next step and will be linked from the README). The resource source (the Guildstone Ring) is live and approved, so day one has 60 wallets with full depots. |
+| **Current status** | **Core-mechanic prototype.** The test scene at `koa.dcl.eth` (linked from the README) covers the first interaction of the loop: the Vault deposit and the Forge. The resource source (the Guildstone Ring) is live and approved, so day one has 60 wallets with full depots. |
 | **Requested round** | **v0** (vertical slice): the hall, the deposit, the Forge with the first weapon line, and one raid against the Bone-Warden, playtested with real parties. The V1 4-week scope in §9 adds the second raid, armor sets, tiers and the Champion board. |
 | **Live at end of the round** | *V0:* a player deposits resources, forges a weapon that mints to their wallet, walks through the Gate with up to three others, fights the Bone-Warden with that weapon in hand, and comes back with Wardenstone and champion XP. *V1 (§9):* the same loop with two raids, three weapon lines, armor sets, +1/+2 tiers and the weekly Champion board naming the Raiding Champion in the hall. |
 
