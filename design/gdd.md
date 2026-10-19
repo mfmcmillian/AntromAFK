@@ -17,8 +17,8 @@
 | | |
 |---|---|
 | **Player promise** | Bring resources to the hall, forge wearables you keep, raid in them, and climb to Raiding Champion of the week. |
-| **Primary player** | Players who like crafting gear from what they have gathered and then proving it in a fight: the Monster Hunter and co-op raid crowd, arriving at a public World alone and hoping to find a party. In Decentraland specifically: wallets that already hold Antrom resources (60 today) and have nothing to point them at. |
-| **Current status** | **Not built.** The `AntromAFK` repo holds a pre-World crafting prototype ("Knights of Antrom: Crafters", 2025) whose Depot / Craft / Workshop panels are reused for the Forge UI. The resource source (the Guildstone Ring) is live and approved, so day one has players with full depots. |
+| **Primary player** | For players who already enjoy crafting gear from what they gathered and proving it in a co-op fight, arriving alone at a public World from the Antrom community, looking for a party and something to spend their resources on. |
+| **Current status** | **Idea + core-mechanic prototype.** This repo holds an earlier crafting prototype whose Vault / Forge panel UI is being reused; no playable World yet (the small test scene for this application is the next step and will be linked from the README). The resource source (the Guildstone Ring) is live and approved, so day one has 60 wallets with full depots. |
 | **Requested round** | **v0** (vertical slice): the hall, the deposit, the Forge with the first weapon line, and one raid against the Bone-Warden, playtested with real parties. The V1 4-week scope in §9 adds the second raid, armor sets, tiers and the Champion board. |
 | **Live at end of the round** | *V0:* a player deposits resources, forges a weapon that mints to their wallet, walks through the Gate with up to three others, fights the Bone-Warden with that weapon in hand, and comes back with Wardenstone and champion XP. *V1 (§9):* the same loop with two raids, three weapon lines, armor sets, +1/+2 tiers and the weekly Champion board naming the Raiding Champion in the hall. |
 
@@ -29,6 +29,10 @@
 > Bring resources to the hall, forge wearables you keep, raid in them, and climb to Raiding Champion of the week.
 
 The twist is that the gear is real: every weapon and armor piece forged is a Decentraland wearable minted to the wallet, worn in every scene, and the only way to get one is to raid for the material and forge it. For the listing: *forge your gear, raid in it, be champion for a week.*
+
+**One familiar comparison.** It's like Monster Hunter's forge-and-hunt loop, but the hub is a public World, the hunts are five minutes, and the armor is a wearable you keep on your avatar everywhere.
+
+**Why this game.** I run the Knights of Antrom in Decentraland, and the Guildstone Ring already has sixty of us gathering resources all day with nowhere to take them. I want the place we take them to be a fight we win together, not another number on a panel, and I want the thing we win to be worn where the rest of Decentraland can see it.
 
 ---
 
@@ -67,7 +71,7 @@ The twist is that the gear is real: every weapon and armor piece forged is a Dec
 | **One complete loop takes** | **4–6 minutes** for a Normal run of the Bone-Warden from GO to WARDEN SLAIN. A hall visit around it (deposit, forge, check the board) is **2–3 minutes**. Payoffs inside the run: Wardenstone per room, XP per kill, a drop toast on the Warden. |
 | **Decision, challenge, or expression** | Which line to forge first (Sword & Shield guards, Twin Daggers roll, Staff keeps range); how much to deposit now against the next tier; which difficulty for this party; when to guard and when to spend stamina; who holds the Warden while others hit; which set and trim to wear in the hall and everywhere else. |
 | **Shortest satisfying visit / typical session** | One raid, **5 minutes** / a forge, three raids and the board, **20–30 minutes** |
-| **Why repetition 10 differs from repetition 1** | First, **the gear**: a +1 Twin Daggers set rolls through a room a Normal Sword & Shield had to guard through, and the Staff in the fourth seat changes the room again. Second, **the difficulty**: Hard and Nightmare on a fight the party knows, for ×2 / ×3 Wardenstone. Third, **the board**: by run ten the player has a name above theirs and a Monday deadline. Layouts are fixed; fresh play comes from gear, people and difficulty. |
+| **Why repetition 10 remains appealing** | First, **the gear**: a +1 Twin Daggers set rolls through a room a Normal Sword & Shield had to guard through, and the Staff in the fourth seat changes the room again. Second, **the difficulty**: Hard and Nightmare on a fight the party knows, for ×2 / ×3 Wardenstone. Third, **the board**: by run ten the player has a name above theirs and a Monday deadline. Layouts are fixed; fresh play comes from gear, people and difficulty. |
 
 **Pillars**
 
@@ -164,28 +168,32 @@ One round hall, Synty fantasy kits, over-the-shoulder camera: a lit standing sto
 
 ## 8. Audience & Comparables
 
-**Audience.** Players who like crafting gear from what they have gathered and then proving it in a fight, arriving at a public World alone and hoping to find a party; in Decentraland, wallets that already hold Antrom resources and want something to spend them on.
+**Primary player + arrival context.** For players who already enjoy crafting gear from what they gathered and proving it in a co-op fight, arriving alone at a public World from the Antrom community, looking for a party and something to spend their resources on.
 
-**Comparables** — *one outside Decentraland, one inside.*
+**How the first group arrives.** The Knights of Antrom community (Discord, 889 members; 60 wallets already holding Antrom resources, 8 guilds) is told in its own channels and through the ring's lobby that the hall is open, and the first evenings are called there, so the two-to-four needed for a Hard run overlap by appointment rather than luck. After that the World is listed on Discover and the Monday Champion is posted to the community each week.
 
-| | Monster Hunter Rise (Capcom, 2021) | Wondermine (Decentraland, 2020–) |
+**Deliberately not for.** Someone who wants to gather or grind inside the World: there is nothing to click for resources here, and a visitor with an empty wallet can only watch, forge nothing and raid on Normal.
+
+### Comparables
+
+| | Comparable A — Decentraland: Wondermine (2020–) | Comparable B — outside: Monster Hunter Rise (Capcom, 2021) |
 |---|---|---|
-| **What works** | The loop is hunt → carve material → forge gear → hunt harder, and the gear is the progression: a weapon line defines how you fight, and a set shows what you killed. Four-player hunts in a shared hub where other hunters see your armor. | A gather-and-craft loop Decentraland players came back to daily for years: bank the gems, craft a better pickaxe. Everyone stood in the same field, so it was social without a party system. |
-| **What does not fit** | Hunts run 15–30 minutes; the hub is instanced to four; gear exists only inside the game. | The grind and the craft are the whole game; nothing you make is a fight, and the reward is a tool and a currency, not a wearable. |
-| **What we do differently** | Five-minute raids in a public World where the hub is everyone; the gear is a Decentraland wearable on the avatar in every scene; a weekly title the whole hall can see. | The gathering is done elsewhere and arrives at the Vault; the hall is for forging, raiding and ranking, so the time in the World is the fight, not the waiting. |
+| **What we observed works** | A gather-and-craft loop Decentraland players came back to daily for years: bank the gems, craft a better pickaxe. Everyone stood in the same field, so it was social without a party system. | The loop is hunt → carve material → forge gear → hunt harder, and the gear is the progression: a weapon line defines how you fight, and a set shows what you killed. Four-player hunts in a shared hub where other hunters see your armor. |
+| **What does not fit our audience or context—and why** | The grind and the craft are the whole game; nothing you make is a fight, and the reward is a tool and a currency, not a wearable. Our players already have the resources; standing and clicking for more is the thing they want to stop doing. | Hunts run 15–30 minutes and the hub is instanced to four; in a public World a late friend would miss the whole hunt, and gear that exists only inside the game is a weaker promise than a wearable the avatar keeps. |
+| **What we will do differently** | The gathering is done elsewhere and arrives at the Vault; the hall is for forging, raiding and ranking, so the time in the World is the fight, not the waiting. | Five-minute raids in a public World where the hub is everyone; the gear is a Decentraland wearable on the avatar in every scene; a weekly title the whole hall can see. |
 
 ---
 
 ## 9. 4 Week Plan (v1 scope)
 
-*Team: one developer at about 20 hours a week, 80 hours across the four weeks. A new scene on the authoritative server in the `AntromAFK` repo, deployed to `koa.dcl.eth` from week 2 so the "live" milestone is met early. Proposed **V0 scope**: weeks 1–2, the hall, the Vault, the first weapon line and the Bone-Warden on Normal, playtested with one party. **V1** adds the lines, armor, tiers, difficulties, the second wing and the Champion board.*
+*Team: one developer at about 20 hours a week, 80 hours across the four weeks. A new scene on the authoritative server in the `AntromAFK` repo, deployed to `koa.dcl.eth` from week 2 so the "live" milestone is met early. Proposed **V0 scope**: weeks 1–2, the hall, the Vault, the first weapon line and the Bone-Warden on Normal, playtested with one party. **V1** adds the lines, armor, tiers, difficulties, the second wing and the Champion board. The small test scene submitted with this application (the Vault deposit and the Forge, one interaction, no raid) is separate from and smaller than V0.*
 
 | Week | What is playable / done |
 |---|---|
 | 1 — Prototype definition (20 h) | Hall blockout; authoritative server scaffold (`isServer()`, `Storage`, `EnvVar`); the **Vault**: read a wallet's resources and deposit them (one keyed call out, idempotent, settled on both sides); the **Forge** with the Sword & Shield weapon (collection created, dispenser key in `EnvVar`, mint from the server). Playable: deposit, forge, see the blade on the avatar. |
 | 2 — Core interaction + first-group test (20 h) | **The Gate and the Bone-Warden**: party board (4 seats, 15 s doors), three rooms, the Warden with three phases, light / heavy / guard / roll, raise an ally, server-simulated hits; champion XP and level; Wardenstone drop. Deployed to `koa.dcl.eth`. Milestone playtest: one party of two clears the Warden; watch one true newcomer for §2's timings. |
 | 3 — Core systems refinement (20 h) | **Twin Daggers and Staff** lines with their movesets; **armor pieces** (helm, chest, legs per line) costing Wardenstone; **+1 / +2 tiers** with trims; **Hard and Nightmare** (health, damage, Wardenstone multipliers); level gates (5 / 8 / 14 / 20). Combat and hall audio. |
-| 4 — Playable prototype, final design direction (20 h) | **Champion board** on the stone with Monday 00:00 UTC reset, the banner and the title; **the Hollow Knight** wing (second raid, same rooms kit, its own boss and set); touch layer and the **mobile playtest** on the Galaxy Z Fold 8 (a phone player clears Normal; 30 fps at four); design direction locked from the week-2 and week-4 sessions. |
+| 4 — Playable release, including testing and deployment (20 h) | **Champion board** on the stone with Monday 00:00 UTC reset, the banner and the title; **the Hollow Knight** wing (second raid, same rooms kit, its own boss and set); touch layer and the **mobile playtest** on the Galaxy Z Fold 8 (a phone player clears Normal; 30 fps at four); design direction locked from the week-2 and week-4 sessions. |
 
 **What keeps the experience changing after launch**
 
