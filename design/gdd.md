@@ -3,7 +3,7 @@
 | | |
 |---|---|
 | Public experience title | Antrom AFK (the scene is "the Champions' Hall") — IP & [Content Policy](https://decentraland.org/content/) self-check: names, characters, code and UI are original KOA work; 3D kits are licensed Synty Studios packs (Synty EULA permits use in shipped games) |
-| Deployment target | Decentraland World on a KOA NAME, running the SDK7 **authoritative server** (`authoritativeMultiplayer: true`; `scene.json` currently names `KoA.dcl.eth`, final NAME to confirm) |
+| Deployment target | Decentraland World **`koa.dcl.eth`**, running the SDK7 **authoritative server** (`authoritativeMultiplayer: true` in `scene.json`). Source: [github.com/mfmcmillian/AntromAFK](https://github.com/mfmcmillian/AntromAFK) |
 | Studio / team name | KOA |
 | Date | 2026-10-18 |
 | Contact (Discord + email) | koa_matt · matthew.mcmillian@ymail.com |
@@ -178,12 +178,12 @@ One round hall, Synty fantasy kits, over-the-shoulder camera: a lit standing sto
 
 ## 9. 4 Week Plan (v1 scope)
 
-*Team: one developer at about 20 hours a week, 80 hours across the four weeks. A new scene on the authoritative server in the `AntromAFK` repo, deployed to the KOA NAME from week 2 so the "live" milestone is met early. Proposed **V0 scope**: weeks 1–2, the hall, the Vault, the first weapon line and the Bone-Warden on Normal, playtested with one party. **V1** adds the lines, armor, tiers, difficulties, the second wing and the Champion board.*
+*Team: one developer at about 20 hours a week, 80 hours across the four weeks. A new scene on the authoritative server in the `AntromAFK` repo, deployed to `koa.dcl.eth` from week 2 so the "live" milestone is met early. Proposed **V0 scope**: weeks 1–2, the hall, the Vault, the first weapon line and the Bone-Warden on Normal, playtested with one party. **V1** adds the lines, armor, tiers, difficulties, the second wing and the Champion board.*
 
 | Week | What is playable / done |
 |---|---|
 | 1 — Prototype definition (20 h) | Hall blockout; authoritative server scaffold (`isServer()`, `Storage`, `EnvVar`); the **Vault**: read a wallet's resources and deposit them (one keyed call out, idempotent, settled on both sides); the **Forge** with the Sword & Shield weapon (collection created, dispenser key in `EnvVar`, mint from the server). Playable: deposit, forge, see the blade on the avatar. |
-| 2 — Core interaction + first-group test (20 h) | **The Gate and the Bone-Warden**: party board (4 seats, 15 s doors), three rooms, the Warden with three phases, light / heavy / guard / roll, raise an ally, server-simulated hits; champion XP and level; Wardenstone drop. Deployed to the NAME. Milestone playtest: one party of two clears the Warden; watch one true newcomer for §2's timings. |
+| 2 — Core interaction + first-group test (20 h) | **The Gate and the Bone-Warden**: party board (4 seats, 15 s doors), three rooms, the Warden with three phases, light / heavy / guard / roll, raise an ally, server-simulated hits; champion XP and level; Wardenstone drop. Deployed to `koa.dcl.eth`. Milestone playtest: one party of two clears the Warden; watch one true newcomer for §2's timings. |
 | 3 — Core systems refinement (20 h) | **Twin Daggers and Staff** lines with their movesets; **armor pieces** (helm, chest, legs per line) costing Wardenstone; **+1 / +2 tiers** with trims; **Hard and Nightmare** (health, damage, Wardenstone multipliers); level gates (5 / 8 / 14 / 20). Combat and hall audio. |
 | 4 — Playable prototype, final design direction (20 h) | **Champion board** on the stone with Monday 00:00 UTC reset, the banner and the title; **the Hollow Knight** wing (second raid, same rooms kit, its own boss and set); touch layer and the **mobile playtest** on the Galaxy Z Fold 8 (a phone player clears Normal; 30 fps at four); design direction locked from the week-2 and week-4 sessions. |
 

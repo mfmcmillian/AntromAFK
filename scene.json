@@ -3,8 +3,8 @@
   "runtimeVersion": "7",
   "main": "bin/index.js",
   "display": {
-    "title": "Knights of Antrom: Crafters (demo)",
-    "description": "AFK crafting demo - gather wood, rock, meat and bones, craft, upgrade your suit.",
+    "title": "Antrom AFK",
+    "description": "Bring resources to the hall, forge wearables you keep, raid in them, and climb to Raiding Champion of the week.",
     "navmapThumbnail": "images/scene-thumbnail.png",
     "favicon": "favicon_asset"
   },
